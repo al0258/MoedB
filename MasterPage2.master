@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage2.master.cs" Inherits="MasterPage2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>רישום למועדי ב' - מקיף יצחק נבון</title>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="logo">
+            <div style="width: 1000px; margin: auto;">
+                <a href="Home.aspx">
+                    <img alt="" src="img/logo.png" /></a>
+                <div class="userlogin" style="float: left; direction: rtl;">
+                    <p style="display: inline;">
+                        <asp:Label ID="lbName" runat="server">שלום אורח!</asp:Label>
+                    </p>
+                    <asp:HyperLink ID="logstat" runat="server" Visible="true"></asp:HyperLink>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <ul class="nav">
+                <li>
+                    <a href="Index.aspx">דף הבית
+                    </a>
+                </li>
+
+                <%
+                    if (Session["User"] != null)
+                    {
+                        Userclass c = Session["User"] as Userclass;   %>
+
+                <li>
+                    <a href="Home.aspx">מועדי ב'
+                    </a>
+
+                    <ul>
+                    </ul>
+                </li>
+
+
+                <%
+                    if (c.IsAdmin)
+                    {
+
+                %>
+
+                <li>
+                    <a href="ManagerZone.aspx">ניהול
+                    </a>
+                </li>
+                <li>
+                    <a href="addtest.aspx">הוסף מבחן
+                    </a>
+                </li>
+
+
+                <%}
+                    } %>
+                <li>
+                    <a href="https://www.navon-g.co.il/">אתר בית הספר
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <div class="footer" style="text-align: center;">
+            <center>
+                <table style="width:990px;" border="0">
+                    <tr>
+                        <td align="right">
+                            <img alt="" height="40px" src="img/logoforwhite.png" style="display:inline;" />
+                        </td>
+                        <td align="left" style ="vertical-align:top;">
+                            גימנסיית יצחק נבון
+                    ||
+                    קרסל 2 חולון
+                     ||
+                    5529563-03
+                        ||
+                            כל הזכויות שמורות לאופק דהרי ועמית לגו
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </div>
+    </form>
+</body>
+</html>
